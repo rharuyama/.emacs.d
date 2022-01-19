@@ -1,0 +1,128 @@
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+gcc -o human human.cpp 
+gcc -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang -o human human.cpp 
+clang++ -o human human.cpp 
+./human 
+clang++ -o human human.cpp && ./human
+clang++ -o human human.cpp && ./human
+clang++ -o human human.cpp && ./human
+clang++ -o human human.cpp && ./human
+clang++ -o human human.cpp && ./human
+ls
+rustc human.rs
+rustc human.rs	
+rustc human.rs	
+rustc human.rs	
+rustc human.rs	
+ls
+ls human
+ls -l
+./human 
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+rustc human.rs	&& ./human
+clang++ -o human human.cpp && ./human
+clang++ -o human human.cpp && ./human
+rm human
+clang++ -o human human.cpp && ./human
+clang++ -o human human.cpp && ./human
+j langs
+cd ../..
+ls
+cd rust
+cd ..
+cd rust-lang/
+ls
+cd ..
+cd rust
+ls
+ls stack
+vagrant ssh
+cp /Library/Input\ Methods/AquaSKK.app/Contents/Resources/keymap.conf ~/Library/Application\ Support/AquaSKK/
+ls
+rustc cat.rs 
+!!
+rustc cat.rs 
+rustc cat.rs 
+rustc cat.rs 
+rustc cat.rs 
+ls
+rustc cat.rs 
+rustc cat.rs hey
+rustc cat.rs hey
+rustc cat.rs hey
+rustc cat.rs 
+rustc cat.rs hey
+rustc cat.rs hey hoy
+rustc cat.rs hey hoy
+c run
+cargo run
+cargo run hey yo
+cargo run hey yo
+cargo run main.rs 
+cargo run fn main.rs 
+cargo run fn main.rs 
+cargo run fn main.rs 
+cargo run fn main.rs 
+cargo run fn main.rs 
+!!
+cargo run fn main.rs 
+!!
+cargo run fn main.rs 
+cargo run fn main.rs 
+rustc err.rs 
+rustc err.rs && ./err
+rustc err.rs && ./err
+rustc err.rs && ./err
+rustc err.rs && ./err
+rustc err.rs && ./err
+rustc err.rs && ./err
+!!
+rustc err.rs && ./err
+rustc err.rs && ./err
+rustc err.rs && ./err
+echo "hey" > hello.txt
+rustc err.rs && ./err
+cargo run hey yo
+ls     Running `/Users/ryoh/work/langs/rust/minigrep/target/debug/minigrep hey yo`
+cargo run hey main.rs
+cargo run hey main.rs 2>/dev/null/
+ls /dev/
+!!
+ls /dev/ | grep null
+cargo run hey main.rs 2> /dev/null
+cargo run hey main.rs 1> /dev/null
+docker exec -it ryohcc bash
+docker exec -it ryohcc bash
+docker exec -it ryohcc bash
+git grep 
+git grep "code["
+git grep "code"
+cargo run
+cargo run 
+cargo run 
+ls
