@@ -1,4 +1,4 @@
-(package-initialize)
+;;(package-initialize)
 
 ;; Install MELPA
 (require 'package)
@@ -32,7 +32,7 @@ There are two things you can do about this warning:
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
+   '(ddskk-posframe use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -53,26 +53,23 @@ There are two things you can do about this warning:
 ;;   (add-to-list 'package-archives
 ;; 	       '("melpa" . "https://melpa.org/packages/") t))
 
-;; -------------------------
+(when (require 'package nil t)
+  (add-to-list 'package-archives
+    '("melpa" . "https://melpa.org/packages/") t))
 
-;; Rust mode
-(use-package rust-mode
-  :commands (rust-mode)
-  )
-;;(autoload 'rust-mode "rust-mode" nil t)
-;; Rust autocomplete
-(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'racer-mode-hook #'eldoc-mode)
-(add-hook 'racer-mode-hook #'company-mode)
-;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-;; (setq company-tooltip-align-annotations t)
+;;
+(ac-config-default)
 
+;; use auto capitalize in org mode
+;;(require 'auto-capitalize)
 (use-package auto-capitalize
-  :commands auto-capitalize-mode
   :init
   (add-hook 'org-mode-hook 'auto-capitalize-mode)
   )
 
+;; Show line number
+;; (require 'linum)
+;; (global-linum-mode 1)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -86,6 +83,7 @@ There are two things you can do about this warning:
 (setq inhibit-startup-screen t)
 
 (ac-config-default)
+(add-hook 'org-mode-hook 'auto-capitalize-mode)
 
 ;; Highlighting brackets
 (show-paren-mode 1)
@@ -118,10 +116,33 @@ There are two things you can do about this warning:
 ;; Enable case-sensitivity
 (setq case-fold-search nil)
 
+;; Rust mode
+(require 'rust-mode)
+(autoload 'rust-mode "rust-mode" nil t)
+;; Rust autocomplete
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'racer-mode-hook #'eldoc-mode)
+(add-hook 'racer-mode-hook #'company-mode)
+(require 'rust-mode)
+(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+(setq company-tooltip-align-annotations t)
+
 ;; Scheme
 (set-variable (quote scheme-program-name) "stk")
 
+;; Haskell mode
+;;(require 'package)
+
+;(package-initialize)
+
+;; company-mode (for autocomplete)
+;;(add-hook 'after-init-hook 'global-company-mode)
+
 ;; markdown mode
+;;(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+;(package-initialize)
 ;; change color
 (setq markdown-preview-stylesheets (list "github.css"))
 
@@ -151,7 +172,8 @@ There are two things you can do about this warning:
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
-;; --- For writings in Japanese--- 
+;; --- For writings in Japanese---
+;;(global-set-key (kbd "C-x C-j") 'skk-mode)
 
 ;; 日本語を補完しない
 ;; (defun edit-category-table-for-company-dabbrev (&optional table)
@@ -171,8 +193,14 @@ There are two things you can do about this warning:
 
 ;; ddssk
 ;; (setq-default skk-kutouten-type 'jp)
-;;
-(define-key minibuffer-local-map (kbd "C-j") 'skk-kakutei)
+
+;; enable org mode export to markdown
+(eval-after-load "org"
+  '(require 'ox-md nil t))
+
+;; eshell disable unix command emulation
+(eval-after-load "esh-module"
+    '(setq eshell-modules-list (delq 'eshell-ls (delq 'eshell-unix eshell-modules-list))))
 
 ;; " "をsticky shiftに用いることにする
 (setq skk-sticky-key " ")
@@ -184,3 +212,26 @@ There are two things you can do about this warning:
   (setq ispell-local-dictionary "en_US")
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
+;; enable latex jarticle 
+(require 'ox-latex)
+(unless (boundp 'org-latex-classes)
+  (setq org-latex-classes nil))
+(add-to-list 'org-latex-classes
+             '("jarticle"
+               "\\documentclass{jarticle}"
+               ("\\section{%s}" . "\\section*{%s}")))
+
+(setq org-latex-pdf-process
+      '("ptex2pdf -l -o \"-synctex=1 -file-line-error\" %f"
+        "bibtex %b"))
+
+;; default frame size
+;; (add-to-list 'default-frame-alist '(height . 48))
+;; (add-to-list 'default-frame-alist '(width . 150))
+
+;;
+(define-key minibuffer-local-map (kbd "C-j") 'skk-kakutei)
+
+;; run ansi-term on startup
+;; (setq initial-buffer-choice #'ansi-term)
+;; (setq initial-buffer-choice (lambda () (term "zsh")))
