@@ -1,4 +1,4 @@
-(package-initialize)
+;;(package-initialize)
 
 ;; Install MELPA
 (require 'package)
@@ -32,7 +32,7 @@ There are two things you can do about this warning:
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
+   '(ddskk-posframe use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -48,8 +48,12 @@ There are two things you can do about this warning:
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
-(use-package package
-  :config
+;; (use-package package
+;;   :config
+;;   (add-to-list 'package-archives
+;; 	       '("melpa" . "https://melpa.org/packages/") t))
+
+(when (require 'package nil t)
   (add-to-list 'package-archives
     '("melpa" . "https://melpa.org/packages/") t))
 
@@ -58,7 +62,10 @@ There are two things you can do about this warning:
 
 ;; use auto capitalize in org mode
 ;;(require 'auto-capitalize)
-(use-package auto-capitalize)
+(use-package auto-capitalize
+  :init
+  (add-hook 'org-mode-hook 'auto-capitalize-mode)
+  )
 
 ;; Show line number
 ;; (require 'linum)
@@ -165,7 +172,8 @@ There are two things you can do about this warning:
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
-;; --- For writings in Japanese--- 
+;; --- For writings in Japanese---
+;;(global-set-key (kbd "C-x C-j") 'skk-mode)
 
 ;; 日本語を補完しない
 ;; (defun edit-category-table-for-company-dabbrev (&optional table)
