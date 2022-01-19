@@ -1,5 +1,3 @@
-(package-initialize)
-
 ;; Install MELPA
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -44,7 +42,7 @@ There are two things you can do about this warning:
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/auto-capitalize/")
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/rust-mode/")
 
-;; -------------------------
+;; --- use package ---
 
 ;; Rust mode
 (use-package rust-mode
@@ -53,15 +51,15 @@ There are two things you can do about this warning:
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
-;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-;; (setq company-tooltip-align-annotations t)
 
+;; auto capitalize
 (use-package auto-capitalize
   :commands auto-capitalize-mode
   :init
   (add-hook 'org-mode-hook 'auto-capitalize-mode)
   )
 
+;; Hooks
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
 (add-hook 'org-mode-hook 'visual-line-mode)
@@ -141,25 +139,11 @@ There are two things you can do about this warning:
 
 ;; --- For writings in Japanese--- 
 
-;; 日本語を補完しない
-;; (defun edit-category-table-for-company-dabbrev (&optional table)
-;;   (define-category ?s "word constituents for company-dabbrev" table)
-;;   (let ((i 0))
-;;     (while (< i 128)
-;;       (if (equal ?w (char-syntax i))
-;;       (modify-category-entry i ?s table)
-;;     (modify-category-entry i ?s table t))
-;;       (setq i (1+ i)))))
-;; (edit-category-table-for-company-dabbrev)
-;; (add-hook 'TeX-mode-hook 'edit-category-table-for-company-dabbrev) ; 下の追記参照
-(setq company-dabbrev-char-regexp "\\cs")
-
 ;; 句読点を右下に
 (set-language-environment "Japanese")
 
 ;; ddssk
 ;; (setq-default skk-kutouten-type 'jp)
-;;
 (define-key minibuffer-local-map (kbd "C-j") 'skk-kakutei)
 
 ;; " "をsticky shiftに用いることにする
