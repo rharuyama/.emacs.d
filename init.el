@@ -43,37 +43,24 @@ There are two things you can do about this warning:
 ;; load path
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/auto-capitalize/")
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/rust-mode/")
-;; (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; (add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
-;; (add-to-list 'package-archives
-;;              '("melpa-stable" . "https://stable.melpa.org/packages/"))
-
-;; (use-package package
-;;   :config
-;;   (add-to-list 'package-archives
-;; 	       '("melpa" . "https://melpa.org/packages/") t))
 
 ;; -------------------------
 
 ;; Rust mode
-;; (use-package rust-mode
-;;   :commands (rust-mode)
-;;   )
-(autoload 'rust-mode "rust-mode" nil t)
-;; Rust autocomplete
+(use-package rust-mode
+  :commands (rust-mode)
+  )
 (add-hook 'rust-mode-hook #'racer-mode)
 (add-hook 'racer-mode-hook #'eldoc-mode)
 (add-hook 'racer-mode-hook #'company-mode)
 ;; (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
 ;; (setq company-tooltip-align-annotations t)
 
-;; (use-package auto-capitalize
-;;   :commands auto-capitalize-mode
-;;   :init
-;;   (add-hook 'org-mode-hook 'auto-capitalize-mode)
-;;   )
-(require 'auto-capitalize)
-(add-hook 'org-mode-hook 'auto-capitalize-mode)
+(use-package auto-capitalize
+  :commands auto-capitalize-mode
+  :init
+  (add-hook 'org-mode-hook 'auto-capitalize-mode)
+  )
 
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'text-mode-hook 'linum-mode)
