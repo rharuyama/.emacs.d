@@ -1,3 +1,6 @@
+;; disable lazy load of use-package?
+(setq use-package-always-demand (daemonp))
+
 ;; Install MELPA
 (require 'package)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
@@ -58,6 +61,8 @@ There are two things you can do about this warning:
   :init
   (add-hook 'org-mode-hook 'auto-capitalize-mode)
   )
+(add-hook 'org-mode-hook 'auto-capitalize-mode)
+
 
 ;; Hooks
 (add-hook 'prog-mode-hook 'linum-mode)
@@ -137,7 +142,7 @@ There are two things you can do about this warning:
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
-;; --- For writings in Japanese--- 
+;; --- For writings in Japanese --- 
 
 ;; 句読点を右下に
 (set-language-environment "Japanese")
