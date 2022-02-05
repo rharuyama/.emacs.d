@@ -1,5 +1,7 @@
 ;; disable lazy load of use-package?
-(setq use-package-always-demand (daemonp))
+;; (setq use-package-always-demand (daemonp))
+(if (daemonp)
+    (setq use-package-always-demand t))
 
 ;; Install MELPA
 (require 'package)
@@ -142,7 +144,7 @@ There are two things you can do about this warning:
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
-;; --- For writings in Japanese --- 
+;; --- For writings in Japanese ---
 
 ;; 句読点を右下に
 (set-language-environment "Japanese")
@@ -154,9 +156,25 @@ There are two things you can do about this warning:
 ;; " "をsticky shiftに用いることにする
 (setq skk-sticky-key " ")
 
+;; zSPC inserts space
+(setq skk-rom-kana-rule-list '(("z " nil " ")))
+
 ;; --- For writings in English --- 
 
 ;; set dictionary english
 (with-eval-after-load "ispell"
   (setq ispell-local-dictionary "en_US")
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
+
+;; double sapce into period
+(defun freaky-space ()
+  (interactive)
+  (cond ((looking-back "\\(?:^\\|\\.\\)  +")
+         (insert " "))
+        ((eq this-command
+             last-command)
+         (backward-delete-char 1)
+         (insert ". "))
+        (t
+         (insert " "))))
+(define-key text-mode-map " " 'freaky-space)
