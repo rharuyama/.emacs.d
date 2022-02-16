@@ -35,7 +35,7 @@ There are two things you can do about this warning:
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
+   '(lsp-ui cargo elm-mode use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -46,8 +46,14 @@ There are two things you can do about this warning:
 ;; load path
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/auto-capitalize/")
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/rust-mode/")
+;;(add-to-list 'load-path "/Users/ryoh/.emacs.d/elm-mode/")
 
 ;; --- use package ---
+
+;; Elm mode
+(use-package elm-mode
+  :commands (elm-mode)
+  )
 
 ;; Rust mode
 (use-package rust-mode
@@ -73,8 +79,17 @@ There are two things you can do about this warning:
 (add-hook 'org-mode-hook 'flyspell-mode)
 (add-hook 'org-mode-hook 'skk-mode)
 (add-hook 'org-mode-hook 'org-indent-mode)
+;; hook c-mode when .ino extension
+(add-to-list 'auto-mode-alist
+             '("\\.ino\\'" . (lambda ()
+                               ;; add major mode setting here, if needed, for example:
+                               (c-mode)
+			       )))
 
 ;; ------ Misc ------
+;; disable warning of cl
+(setq byte-compile-warnings '(cl-functions))
+
 ;; Skip startup screen
 (setq inhibit-startup-screen t)
 
@@ -178,3 +193,30 @@ There are two things you can do about this warning:
         (t
          (insert " "))))
 (define-key text-mode-map " " 'freaky-space)
+
+;; --- Try ---
+
+;;https://keens.github.io/blog/2020/12/01/rustnokankyoukouchiku_emacs_/
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; #rust
+
+(use-package rust-mode
+  :ensure t
+  :custom rust-format-on-save t)
+
+
+(use-package cargo
+  :ensure t
+  :hook (rust-mode . cargo-minor-mode))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;;; #lsp
+
+(use-package lsp-mode
+  :ensure t
+  :hook (rust-mode . lsp)
+  :hook (elm-mode . lsp)
+  :bind ("C-c h" . lsp-describe-thing-at-point)
+  :custom (lsp-rust-server 'rust-analyzer))
+(use-package lsp-ui
+  :ensure t)
