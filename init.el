@@ -204,3 +204,24 @@ There are two things you can do about this warning:
   :custom (lsp-rust-server 'rust-analyzer))
 (use-package lsp-ui
   :ensure t)
+
+;; .gitignore
+
+;; games
+;; .DS_Store
+;; .cache
+;; .cask
+;; .gitignore
+;; .lsp-session-v1
+;; ac-comphist.dat
+
+;; auto-capitalize
+;; auto-save-list
+;; elpa
+;; emacs-libvterm
+;; eshell
+;; places
+;; rust-mode
+;; tramp
+;; url
+;; use-package
