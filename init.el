@@ -1,3 +1,10 @@
+;;http://emacs.rubikitch.com/use-package-2/
+(package-initialize)
+(setq package-archives
+      '(("gnu" . "http://elpa.gnu.org/packages/")
+        ("melpa" . "http://melpa.org/packages/")
+        ("org" . "http://orgmode.org/elpa/")))
+
 ;; disable lazy load of use-package?
 ;; (setq use-package-always-demand (daemonp))
 (if (daemonp)
@@ -35,7 +42,7 @@ There are two things you can do about this warning:
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(lsp-ui cargo elm-mode use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
+   '(auto-indent-mode lsp-ui cargo elm-mode use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -46,14 +53,8 @@ There are two things you can do about this warning:
 ;; load path
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/auto-capitalize/")
 (add-to-list 'load-path "/Users/ryoh/.emacs.d/rust-mode/")
-;;(add-to-list 'load-path "/Users/ryoh/.emacs.d/elm-mode/")
 
 ;; --- use package ---
-
-;; Elm mode
-(use-package elm-mode
-  :commands (elm-mode)
-  )
 
 ;; Rust mode
 (use-package rust-mode
@@ -67,9 +68,7 @@ There are two things you can do about this warning:
 (use-package auto-capitalize
   :commands auto-capitalize-mode
   :init
-  (add-hook 'org-mode-hook 'auto-capitalize-mode)
   )
-(add-hook 'org-mode-hook 'auto-capitalize-mode)
 
 
 ;; Hooks
@@ -181,18 +180,18 @@ There are two things you can do about this warning:
   (setq ispell-local-dictionary "en_US")
   (add-to-list 'ispell-skip-region-alist '("[^\000-\377]+")))
 
-;; double sapce into period
-(defun freaky-space ()
-  (interactive)
-  (cond ((looking-back "\\(?:^\\|\\.\\)  +")
-         (insert " "))
-        ((eq this-command
-             last-command)
-         (backward-delete-char 1)
-         (insert ". "))
-        (t
-         (insert " "))))
-(define-key text-mode-map " " 'freaky-space)
+;; ;; double sapce into period
+;; (defun freaky-space ()
+;;   (interactive)
+;;   (cond ((looking-back "\\(?:^\\|\\.\\)  +")
+;;          (insert " "))
+;;         ((eq this-command
+;;              last-command)
+;;          (backward-delete-char 1)
+;;          (insert ". "))
+;;         (t
+;;          (insert " "))))
+;; (define-key text-mode-map " " 'freaky-space)
 
 ;; --- Try ---
 
@@ -215,7 +214,6 @@ There are two things you can do about this warning:
 (use-package lsp-mode
   :ensure t
   :hook (rust-mode . lsp)
-  :hook (elm-mode . lsp)
   :bind ("C-c h" . lsp-describe-thing-at-point)
   :custom (lsp-rust-server 'rust-analyzer))
 (use-package lsp-ui
