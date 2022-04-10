@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ;;http://emacs.rubikitch.com/use-package-2/
 (package-initialize)
 (setq package-archives
@@ -6,8 +5,6 @@
         ("melpa" . "http://melpa.org/packages/")
         ("org" . "http://orgmode.org/elpa/")))
 
-=======
->>>>>>> origin/main
 ;; disable lazy load of use-package?
 ;; (setq use-package-always-demand (daemonp))
 (if (daemonp)
@@ -198,13 +195,10 @@ There are two things you can do about this warning:
 
 ;; --- Try ---
 
-<<<<<<< HEAD
 ;;https://keens.github.io/blog/2020/12/01/rustnokankyoukouchiku_emacs_/
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; #rust
 
-=======
->>>>>>> origin/main
 (use-package rust-mode
   :ensure t
   :custom rust-format-on-save t)
@@ -214,12 +208,9 @@ There are two things you can do about this warning:
   :ensure t
   :hook (rust-mode . cargo-minor-mode))
 
-<<<<<<< HEAD
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; #lsp
 
-=======
->>>>>>> origin/main
 (use-package lsp-mode
   :ensure t
   :hook (rust-mode . lsp)
@@ -227,8 +218,6 @@ There are two things you can do about this warning:
   :custom (lsp-rust-server 'rust-analyzer))
 (use-package lsp-ui
   :ensure t)
-<<<<<<< HEAD
-=======
 
 ;; .gitignore
 
@@ -250,4 +239,3 @@ There are two things you can do about this warning:
 ;; tramp
 ;; url
 ;; use-package
->>>>>>> origin/main
