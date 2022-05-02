@@ -81,8 +81,12 @@ There are two things you can do about this warning:
 ;; hook c-mode when .ino extension
 (add-to-list 'auto-mode-alist
              '("\\.ino\\'" . (lambda ()
-                               ;; add major mode setting here, if needed, for example:
                                (c-mode)
+			       )))
+;; hook sh-mode when .sh extension
+(add-to-list 'auto-mode-alist
+             '("\\.sh\\'" . (lambda ()
+                               (sh-mode)
 			       )))
 
 ;; ------ Misc ------
