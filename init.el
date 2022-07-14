@@ -42,7 +42,7 @@ There are two things you can do about this warning:
    '(("gnu" . "https://elpa.gnu.org/packages/")
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages
-   '(auto-indent-mode lsp-ui cargo elm-mode use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
+   '(nix-mode auto-indent-mode lsp-ui cargo elm-mode use-package vterm ddskk lsp-mode racer markdown-preview-mode haskell-mode ctags-update company auto-complete)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -243,3 +243,13 @@ There are two things you can do about this warning:
 ;; tramp
 ;; url
 ;; use-package
+
+;; org capture
+(global-set-key (kbd "C-c c") 'org-capture)
+(setq org-directory "~/org/")
+(setq org-default-notes-file (concat org-directory "notes.org"))
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/gtd.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+         "* %U\n%?")))
