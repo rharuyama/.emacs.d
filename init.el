@@ -253,3 +253,9 @@ There are two things you can do about this warning:
          "* TODO %?\n  %i\n  %a")
         ("j" "Journal" entry (file+datetree "~/org/journal.org")
          "* %U\n%?")))
+
+;; Recent files
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
